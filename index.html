@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Study Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero__copy">
+        <p class="eyebrow">Adaptive planning for focused learners</p>
+        <h1>AI Study Planner</h1>
+        <p class="hero__text">
+          Turn a big exam or learning goal into a realistic weekly roadmap with daily focus sessions,
+          smart priority balancing, and progress tracking that stays out of your way.
+        </p>
+      </div>
+      <div class="hero__card glass">
+        <p class="hero__card-label">Planner Mode</p>
+        <div class="hero__stats">
+          <div>
+            <span id="statSubjects">0</span>
+            <small>Subjects</small>
+          </div>
+          <div>
+            <span id="statHours">0h</span>
+            <small>Daily Effort</small>
+          </div>
+          <div>
+            <span id="statReadiness">0%</span>
+            <small>Readiness</small>
+          </div>
+        </div>
+        <p id="heroInsight" class="hero__insight">Build your plan to see AI guidance here.</p>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <!-- Input form where the student enters goal, date, effort, and subjects. -->
+      <section class="planner-panel glass">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Plan Setup</p>
+            <h2>Create your roadmap</h2>
+          </div>
+          <button id="resetButton" class="ghost-button" type="button">Reset</button>
+        </div>
+
+        <form id="plannerForm" class="planner-form">
+          <label>
+            Main goal
+            <input id="goal" name="goal" type="text" placeholder="Crack finals, learn DSA, ace IELTS..." required>
+          </label>
+
+          <div class="form-grid">
+            <label>
+              Target date
+              <input id="examDate" name="examDate" type="date" required>
+            </label>
+
+            <label>
+              Study hours per day
+              <input id="studyHours" name="studyHours" type="number" min="1" max="16" value="4" required>
+            </label>
+          </div>
+
+          <label>
+            Subjects
+            <textarea id="subjects" name="subjects" rows="4" placeholder="Math - hard - 3&#10;Physics - medium - 2&#10;English - easy - 1" required></textarea>
+            <small>One per line: <code>Subject - difficulty - priority</code>. Difficulty: easy, medium, hard. Priority: 1-3.</small>
+          </label>
+
+          <label>
+            Preferred study style
+            <select id="studyStyle" name="studyStyle">
+              <option value="balanced">Balanced mix</option>
+              <option value="deep-work">Deep work blocks</option>
+              <option value="revision-first">Revision first</option>
+              <option value="exam-sprint">Exam sprint</option>
+            </select>
+          </label>
+
+          <button class="primary-button" type="submit">Generate AI Plan</button>
+        </form>
+      </section>
+
+      <!-- Summary area showing generated insights and completion percentage. -->
+      <section class="insights-panel">
+        <div class="glass summary-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">AI Summary</p>
+              <h2>Your study brief</h2>
+            </div>
+          </div>
+          <div id="summaryContent" class="empty-state">
+            Add your goal and subjects to generate a personalized plan.
+          </div>
+        </div>
+
+        <div class="glass progress-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Momentum</p>
+              <h2>Completion tracker</h2>
+            </div>
+          </div>
+          <div class="progress-meter">
+            <div id="progressBar" class="progress-meter__fill"></div>
+          </div>
+          <p id="progressText">0% completed</p>
+        </div>
+      </section>
+
+      <!-- Quick daily action cards generated from the highest-priority subjects. -->
+      <section class="glass focus-panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Today</p>
+            <h2>Daily focus board</h2>
+          </div>
+        </div>
+        <div id="focusBoard" class="focus-board empty-state">
+          Your first generated plan will suggest what to focus on today.
+        </div>
+      </section>
+
+      <!-- Weekly study schedule built from subject difficulty, priority, and time left. -->
+      <section class="glass schedule-panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Roadmap</p>
+            <h2>Weekly study schedule</h2>
+          </div>
+        </div>
+        <div id="schedule" class="schedule empty-state">
+          No schedule yet. Generate a plan to start.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="taskTemplate">
+    <label class="task-item">
+      <input type="checkbox">
+      <span></span>
+    </label>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
