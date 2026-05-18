@@ -1,6 +1,9 @@
 # AI-Study-Planner
 AI Study Planner is a smart web-based application developed using HTML, CSS, and JavaScript. It helps students organize their study schedule, manage subjects, track tasks, and improve productivity with an easy-to-use interface. The project was built with AI-assisted development and customized for academic learning and project purposes.
 
+## 🌐 Live Website
+[Visit AI Study Planner](https://ai-study-planner13.netlify.app/)
+
 ## Title
 AI Study Planner Using HTML, CSS and JavaScript
 
